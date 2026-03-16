@@ -11,5 +11,13 @@ urlpatterns = [
     path("verify-otp/", views.verify_otp_page, name="verify_otp"),
     path("set-password/",views.set_password_view,name='set_password'),
     path("setup-profile/",views.setup_profile_view,name='setup_profile'),
-    path('signin/',views.login_view,name='logine_view')
+    path('signin/',views.login_view,name='logine_view'),
+    path('signout/',views.logout_view,name = 'logout_view'),
+    path('profile/',views.profile_detail_view,name='my_profile'),
+    path('profile/edit/',views.edit_profile_view, name='edit_profile'),
+    path('profile/<str:username>/',views.profile_detail_view, name='profile_detail'),
+    path('follow/<str:username>/',views.toggle_follow_view, name='toggle_follow'),
+    path('<str:username>/followers/',views.followers_list_view, name='followers_list'),
+    path('<str:username>/following/',views.following_list_view, name='following_list'),
+    
 ]
