@@ -17,7 +17,7 @@ from django.conf import settings
 
 from .utils import generate_and_send_otp, verify_otp
 from .models import *
-
+from post.views import feed_view
 
 from datetime import datetime, timedelta
 import uuid
@@ -65,9 +65,9 @@ def start_page(request):
 # ============================================================
 # INDEX
 # ============================================================
-@login_required
+@login_required(login_url="start_page")
 def index(request):
-    return render(request, "index/base.html")
+    return feed_view(request)
 
 
 # ============================================================
@@ -394,7 +394,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     request.session.flush()
-    messages.succus(request, "you have been logged out")
+    messages.success(request, "you have been logged out")
     return redirect("start_page")
 
 
